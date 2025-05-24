@@ -52,11 +52,11 @@ export default function SettingScreen() {
         </Text>
         <Text
           style={{
-            fontSize: width / currentWord?.length | 20,
+            fontSize: 200,
             fontWeight: "bold",
             textAlign: "center",
             marginBottom: 20,
-            color: "#333",
+            color: "#330066",
             fontFamily:  "Comic Sans MS",
           }}
         >
@@ -64,8 +64,8 @@ export default function SettingScreen() {
         </Text>
       </View>
       <View style={styles.bottom}>
-        <Button title="🔊 Play Sound" onPress={playSound} color={"#ecf0f1"} />
-        <Button title="➡️ Next Word" onPress={nextWord} color={"#ecf0f1"} />
+        <Button title="🔊 Play Sound" onPress={playSound} color={"#55c2da"} />
+        <Button title="➡️ Next Word" onPress={nextWord} color={"#80669d"} />
       </View>
     </ThemedView>
   );
@@ -74,7 +74,7 @@ export default function SettingScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#CCCCCC",
   },
   content: {
     borderRadius: 10,

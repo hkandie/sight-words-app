@@ -25,8 +25,7 @@ export default function RootLayout() {
           screenOptions={{
             title: 'Sight Words Learning',
             headerStyle: {
-              backgroundColor: '#f8f8f8',
-              
+              backgroundColor: '#CCCCCC',              
             },
             headerTintColor: '#333',
           }}
