@@ -1,11 +1,10 @@
-import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { Text, View } from 'react-native';
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import { Text } from "react-native";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   if (!loaded) {
@@ -14,20 +13,26 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={DefaultTheme}>      
-      <View>
-        <Stack
-          initialRouteName="index"          
-          screenOptions={{
-            title: 'Sight Words Learning',
-            headerStyle: {
-              backgroundColor: '#f8f8f8',              
-            },
-            headerTintColor: '#333',
-          }}
-        />
-      </View>
-    </ThemeProvider>
+    <Stack
+      initialRouteName="index"
+      screenOptions={{
+        title: "Sight Words Learning",
+        headerStyle: {
+          backgroundColor: "#f8f8f8",
+        },
+        headerTintColor: "#333",
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 20,
+          fontFamily: "SpaceMono",
+        },
+        contentStyle: {
+          padding: 20,
+          backgroundColor: "#f8f8f8",
+          flexDirection: "column",
+          flex: 1
+        },
+      }}
+    />
   );
 }
-

@@ -46,12 +46,14 @@ export default function HomeScreen() {
           </Pressable>
         )}
         keyExtractor={(item) => item.id}
+        ListFooterComponent={<View style={{height: 20}}/>}
       />
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -59,7 +61,6 @@ const styles = StyleSheet.create({
     overflowY: "scroll",
   },
   contentContainerStyle: {
-    flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",

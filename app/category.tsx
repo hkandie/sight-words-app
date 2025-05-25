@@ -1,21 +1,29 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import * as Speech from "expo-speech";
 import { useEffect, useState } from "react";
-import { Button, Dimensions, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View
+} from "react-native";
 import words from "../assets/data/words.json";
+
+type TypeKeyValue = keyof typeof words 
 
 export default function SettingScreen() {
   const router = useRouter();
   const { category } = useLocalSearchParams();
   const [currentWord, setCurrentWord] = useState<string | null>(null);
-  const { width } = Dimensions.get("window");
-  const categoryWords = words[category] || [];
+  const categoryWords: string [] = words[category as TypeKeyValue] || [];
   const playSound = () => {
+    if (!currentWord) return;
     Speech.speak(currentWord);
   };
 
   const nextWord = () => {
-    const index = categoryWords.indexOf(currentWord);
+    const index = categoryWords.indexOf(currentWord as string);
     setCurrentWord(categoryWords[(index + 1) % categoryWords.length]);
   };
 
@@ -41,41 +49,49 @@ export default function SettingScreen() {
         <Button title="🔊 Play Sound" onPress={playSound} color={"#55c2da"} />
         <Button title="➡️ Next Word" onPress={nextWord} color={"#80669d"} />
       </View>
-      <View style={styles.content}>
+      <ScrollView style={styles.content}>
         <Text
           style={{
+            flex: 1,
             fontSize: 100,
             fontWeight: "bold",
             textAlign: "center",
             marginBottom: 20,
             color: "#330066",
             fontFamily: "Comic Sans MS",
-            width: width - 40, // Adjust the width to fit the screen
             wordWrap: "break-word", // This will break the word if it's too long
           }}
           adjustsFontSizeToFit
         >
           {currentWord}
         </Text>
-      </View>
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
     backgroundColor: "#CCCCCC",
+    borderRadius: 10,
   },
   content: {
     borderRadius: 10,
+    padding: 10,
     backgroundColor: "#ecf0f1",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
   bottom: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20,
-    marginBottom: 20, // Optional: Add margin at the bottom
     padding: 10,
+    borderRadius: 10,
   },
 });
