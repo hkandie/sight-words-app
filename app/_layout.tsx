@@ -1,13 +1,9 @@
 import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import { Text } from 'react-native';
-
-import { ThemedView } from '@/components/ThemedView';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Text, View } from 'react-native';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -19,7 +15,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={DefaultTheme}>      
-      <ThemedView>
+      <View>
         <Stack
           initialRouteName="index"          
           screenOptions={{
@@ -30,7 +26,7 @@ export default function RootLayout() {
             headerTintColor: '#333',
           }}
         />
-      </ThemedView>
+      </View>
     </ThemeProvider>
   );
 }

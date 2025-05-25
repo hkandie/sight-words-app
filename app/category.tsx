@@ -1,10 +1,8 @@
-import { ThemedView } from "@/components/ThemedView";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import * as Speech from 'expo-speech';
+import * as Speech from "expo-speech";
 import { useEffect, useState } from "react";
 import { Button, Dimensions, StyleSheet, Text, View } from "react-native";
 import words from "../assets/data/words.json";
-
 
 export default function SettingScreen() {
   const router = useRouter();
@@ -30,44 +28,37 @@ export default function SettingScreen() {
 
   if (!category) {
     return (
-      <ThemedView>
+      <View>
         <Text>Please select a category</Text>
         <Button title="Go to Home" onPress={() => router.push("/")} />
-      </ThemedView>
+      </View>
     );
   }
 
   return (
-    <ThemedView style={styles.container}>
-      <View style={styles.content}>
-        <Text
-          style={{
-            fontSize: 24,
-            fontWeight: "bold",
-            marginBottom: 20,
-            textAlign: "center",
-          }}
-        >
-          {category}
-        </Text>
-        <Text
-          style={{
-            fontSize: 200,
-            fontWeight: "bold",
-            textAlign: "center",
-            marginBottom: 20,
-            color: "#330066",
-            fontFamily:  "Comic Sans MS",
-          }}
-        >
-          {currentWord}
-        </Text>
-      </View>
+    <View style={styles.container}>
       <View style={styles.bottom}>
         <Button title="🔊 Play Sound" onPress={playSound} color={"#55c2da"} />
         <Button title="➡️ Next Word" onPress={nextWord} color={"#80669d"} />
       </View>
-    </ThemedView>
+      <View style={styles.content}>
+        <Text
+          style={{
+            fontSize: 100,
+            fontWeight: "bold",
+            textAlign: "center",
+            marginBottom: 20,
+            color: "#330066",
+            fontFamily: "Comic Sans MS",
+            width: width - 40, // Adjust the width to fit the screen
+            wordWrap: "break-word", // This will break the word if it's too long
+          }}
+          adjustsFontSizeToFit
+        >
+          {currentWord}
+        </Text>
+      </View>
+    </View>
   );
 }
 
@@ -75,7 +66,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     backgroundColor: "#CCCCCC",
-    height: "70%",
   },
   content: {
     borderRadius: 10,
