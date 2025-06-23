@@ -53,7 +53,7 @@ export default function SettingScreen() {
         <Text
           style={{
             flex: 1,
-            fontSize: 100,
+            fontSize: 80,
             fontWeight: "bold",
             textAlign: "center",
             marginBottom: 20,
